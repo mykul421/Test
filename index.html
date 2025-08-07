@@ -1,82 +1,74 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dudhwa National Park</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Art of Stargazing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
     body {
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f0f8f5;
-      color: #2e3d2f;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0d1b2a;
+      color: #e0e1dd;
     }
     header {
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)),
-                  url('https://images.unsplash.com/photo-1573739580606-c0f94e7c47cd') no-repeat center center/cover;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), 
+                  url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       color: #fff;
       text-align: center;
     }
     header h1 {
-      font-size: 4rem;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px 8px #000;
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5em;
+      margin-bottom: 10px;
     }
     header p {
-      font-size: 1.5rem;
-      text-shadow: 1px 1px 5px #000;
+      font-size: 1.2em;
+      color: #cdd7d6;
     }
     nav {
-      background-color: #2c5c36;
-      padding: 1rem;
+      background-color: #1b263b;
+      padding: 15px;
       text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
     nav a {
-      color: white;
+      color: #e0e1dd;
       margin: 0 15px;
       text-decoration: none;
       font-weight: bold;
     }
+    nav a:hover {
+      color: #f4a261;
+    }
     section {
       padding: 60px 20px;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: auto;
     }
     h2 {
-      color: #2c5c36;
+      color: #f4a261;
       margin-bottom: 20px;
+      font-family: 'Playfair Display', serif;
     }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    .quote {
+      font-style: italic;
       text-align: center;
-      transition: transform 0.3s;
-    }
-    .card:hover { transform: scale(1.03); }
-    .card img {
-      height: 60px;
-      margin-bottom: 15px;
+      margin: 30px 0;
+      font-size: 1.3em;
+      color: #a9bcd0;
     }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 15px;
+      margin-top: 30px;
     }
     .gallery img {
       width: 100%;
@@ -88,78 +80,51 @@
     .gallery img:hover {
       transform: scale(1.05);
     }
-    iframe {
-      width: 100%;
-      height: 400px;
-      border: none;
-      border-radius: 10px;
-    }
     footer {
-      background-color: #2c5c36;
+      background-color: #1b263b;
       color: white;
       text-align: center;
       padding: 20px;
-      margin-top: 40px;
+      margin-top: 50px;
     }
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Dudhwa National Park</h1>
-  <p>Where Nature Roars and Wilderness Thrives</p>
+  <h1>The Art of Stargazing</h1>
+  <p>Where silence speaks and the cosmos whispers</p>
 </header>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#wildlife">Wildlife</a>
+  <a href="#intro">Introduction</a>
+  <a href="#beauty">The Beauty</a>
   <a href="#gallery">Gallery</a>
-  <a href="#map">Location</a>
 </nav>
 
-<section id="about">
-  <h2>About the Park</h2>
-  <p>Nestled in the Terai region of Uttar Pradesh, Dudhwa National Park is a haven for nature lovers. Home to tigers, elephants, swamp deer, and a vibrant variety of bird species, this forest gem is an ecological paradise that blends rich biodiversity with scenic tranquility.</p>
+<section id="intro">
+  <h2>Why Stargazing?</h2>
+  <p>Stargazing is more than just looking at the stars—it's a ritual of wonder, curiosity, and cosmic awe. In a world obsessed with speed, the night sky reminds us to slow down, breathe deeply, and look up. Every star is a story, every constellation a myth waiting to be retold. Whether you're tracking Saturn’s rings or simply lying on your back watching shooting stars, the sky connects us to the universe and to ourselves.</p>
+  <div class="quote">“For my part, I know nothing with any certainty, but the sight of the stars makes me dream.” – Vincent Van Gogh</div>
 </section>
 
-<section id="wildlife">
-  <h2>Wildlife & Safari</h2>
-  <div class="cards">
-    <div class="card">
-      <img src="https://img.icons8.com/ios-filled/100/forest.png" alt="Forest Icon"/>
-      <h3>Thick Forest Trails</h3>
-      <p>Walk amidst dense sal and grasslands echoing with the sounds of nature.</p>
-    </div>
-    <div class="card">
-      <img src="https://img.icons8.com/ios-filled/100/elephant.png" alt="Elephant Icon"/>
-      <h3>Jeep & Elephant Safari</h3>
-      <p>Encounter majestic elephants and elusive tigers in their natural habitat.</p>
-    </div>
-    <div class="card">
-      <img src="https://img.icons8.com/ios-filled/100/bird.png" alt="Bird Icon"/>
-      <h3>Bird Watching</h3>
-      <p>Discover over 450 species of birds, including migratory and rare beauties.</p>
-    </div>
-  </div>
+<section id="beauty">
+  <h2>The Beauty of the Night</h2>
+  <p>Each season brings a new celestial masterpiece. Winter unveils Orion, Summer showcases the Milky Way, and Autumn invites quiet reflections under meteor showers. With a telescope or just the naked eye, the sky offers poetry in motion — free, infinite, and never-ending.</p>
 </section>
 
 <section id="gallery">
-  <h2>Gallery</h2>
+  <h2>Celestial Gallery</h2>
   <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1556012018-3ba14e4080e0" alt="Tiger">
-    <img src="https://images.unsplash.com/photo-1598514982727-51a7b8679271" alt="Deer in Forest">
-    <img src="https://images.unsplash.com/photo-1572177818736-57fe6b20c535" alt="Elephants">
-    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb" alt="Forest Canopy">
+    <img src="https://images.unsplash.com/photo-1589998059171-5881c8419e81" alt="Milky Way">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Night Sky">
+    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769" alt="Constellations">
+    <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e" alt="Stars">
   </div>
 </section>
 
-<section id="map">
-  <h2>How to Reach</h2>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14332.2303513046!2d80.89221105!3d28.517300349999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399fdc3a0a3d4cf7%3A0x8c680e0072c12297!2sDudhwa%20National%20Park!5e0!3m2!1sen!2sin!4v1694501829174!5m2!1sen!2sin"></iframe>
-</section>
-
 <footer>
-  <p>© 2025 Dudhwa National Park | Designed by Kuldeep Kumar</p>
+  <p>© 2025 The Art of Stargazing | Created by a dreamer under the stars</p>
 </footer>
 
 </body>
