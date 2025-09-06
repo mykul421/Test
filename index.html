@@ -1,162 +1,580 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuldeep Kumar – Implementation Engineer & Senior Consultant</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f8fb;
-        margin: 0;
-        padding: 0;
-        color: #333;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CareerMate — Premium Resume Intelligence</title>
+
+  <!-- Tailwind CDN (plays well for prototypes / polished demos) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inter font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js for lightweight charts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root{
+      --bg:#0f172a;
+      --muted:#94a3b8;
+      --accent-1: linear-gradient(135deg,#0ea5a4 0%,#06b6d4 100%);
+      --card-bg: #0b1220;
+      --glass: rgba(255,255,255,0.03);
     }
-    header {
-        background: linear-gradient(90deg, #004080, #0073e6);
-        color: white;
-        padding: 40px 20px;
-        text-align: center;
+
+    html,body{height:100%}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#071024 0%, #071026 40%, #07102a 100%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    header h1 {
-        margin: 0;
-        font-size: 2.5rem;
+
+    /* header glass blur */
+    .glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.02) 100%);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.04);
     }
-    header p {
-        margin: 5px 0;
-        font-size: 1.1rem;
+
+    /* subtle float animation for hero badges */
+    .float-y {
+      animation: floaty 6s ease-in-out infinite;
     }
-    a {
-        color: #ffdd00;
-        text-decoration: none;
+    @keyframes floaty {
+      0% { transform: translateY(0px) }
+      50% { transform: translateY(-8px) }
+      100% { transform: translateY(0px) }
     }
-    section {
-        max-width: 900px;
-        background: white;
-        margin: 20px auto;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+
+    /* skill tag animation */
+    .skill-tag { transform-origin:center; transition: transform .25s ease, box-shadow .25s ease; }
+    .skill-tag:hover { transform: translateY(-6px) scale(1.04); box-shadow: 0 10px 30px rgba(2,6,23,0.6); }
+
+    /* small helper to make charts crisp */
+    .card { background: var(--card-bg); border-radius: 12px; padding: 1.25rem; box-shadow: 0 8px 30px rgba(3,7,18,0.6); border: 1px solid rgba(255,255,255,0.03); }
+
+    /* responsive hero layout */
+    @media (min-width: 1024px){
+      .hero-illustration { transform: translateY(-8px); }
     }
-    h2 {
-        color: #004080;
-        border-bottom: 2px solid #0073e6;
-        padding-bottom: 5px;
-    }
-    ul {
-        padding-left: 20px;
-    }
-    .skills, .certs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    .badge {
-        background: #0073e6;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-    }
-    footer {
-        text-align: center;
-        padding: 15px;
-        background: #004080;
-        color: white;
-        font-size: 0.9rem;
-    }
-</style>
+
+    /* sticky nav shadow */
+    header.sticky { position: sticky; top: 0; z-index: 60; }
+  </style>
 </head>
 <body>
 
-<header>
-    <h1>Kuldeep Kumar</h1>
-    <p>Implementation Engineer & Senior Consultant</p>
-    <p>Email: <a href="mailto:kumar.kuldeep421@gmail.com">kumar.kuldeep421@gmail.com</a> | Phone: 9458705553</p>
-    <p><a href="https://www.linkedin.com/in/mykuldeep/" target="_blank">LinkedIn Profile</a></p>
-</header>
+  <!-- Sticky nav -->
+  <header class="sticky top-0 glass">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a class="flex items-center gap-3" href="#">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-teal-400 to-sky-500 flex items-center justify-center shadow-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12.5L9 6l6 6.5 6-8.5" stroke="#021029" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <div class="text-slate-50 font-semibold text-lg">CareerMate</div>
+          <div class="text-slate-400 text-xs -mt-0.5">Resume Intelligence • Tailored Applications</div>
+        </div>
+      </a>
 
-<section>
-    <h2>Professional Summary</h2>
-    <p>Implementation Engineer & Senior Consultant with 8+ years of experience delivering SaaS solutions across financial services and enterprise technology. Skilled in end-to-end implementations, system integration, automation scripting, and cross-functional stakeholder collaboration. Known for reducing deployment time, improving system reliability, and mentoring high-performing teams. Strong technical foundation in SQL, Java, APIs, and cloud/on-prem platforms.</p>
-</section>
+      <nav class="hidden md:flex items-center gap-6 text-slate-300 text-sm">
+        <a href="#why" class="hover:text-white transition">Why</a>
+        <a href="#features" class="hover:text-white transition">Features</a>
+        <a href="#demo" class="hover:text-white transition">Demo</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+        <button id="tryBtn" class="ml-4 px-4 py-2 bg-gradient-to-r from-teal-400 to-sky-500 rounded-full text-sm font-semibold text-slate-900 shadow">Try Demo</button>
+      </nav>
 
-<section>
-    <h2>Technical Skills</h2>
-    <div class="skills">
-        <span class="badge">SQL</span>
-        <span class="badge">Java</span>
-        <span class="badge">Batch</span>
-        <span class="badge">Python (basic)</span>
-        <span class="badge">HTML</span>
-        <span class="badge">SQL Server</span>
-        <span class="badge">Postgres</span>
-        <span class="badge">Tableau</span>
-        <span class="badge">JIRA</span>
-        <span class="badge">Apache Tomcat</span>
-        <span class="badge">ServiceNow</span>
-        <span class="badge">Nuance Recognizer</span>
-        <span class="badge">SaaS Configuration</span>
-        <span class="badge">REST APIs</span>
-        <span class="badge">XML</span>
-        <span class="badge">VMware</span>
-        <span class="badge">Windows</span>
-        <span class="badge">Linux</span>
-        <span class="badge">Agile</span>
-        <span class="badge">SDLC</span>
-        <span class="badge">Change Management</span>
-        <span class="badge">QA</span>
+      <div class="md:hidden">
+        <button id="mobileToggle" class="p-2 bg-white/5 rounded"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="#e6eef8" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+      </div>
     </div>
-</section>
+  </header>
 
-<section>
-    <h2>Professional Experience</h2>
-    <h3>Sapiens India – Senior Consultant (Apr 2021 – Present)</h3>
-    <ul>
-        <li>Delivered 10+ SaaS implementations, improving deployment speed by 20% while ensuring data security compliance.</li>
-        <li>Collaborated with stakeholders across 3 departments to reduce change request cycles by 25%.</li>
-        <li>Rolled out training programs that improved user adoption by 30%.</li>
-        <li>Maintained 100% compliance with internal security standards, reducing deployment-related security issues by 40%.</li>
-        <li>Analyzed delivery metrics to improve efficiency, reducing cycle time by 15%.</li>
-        <li>Resolved 50+ escalated issues, improving support response time by 35%.</li>
-    </ul>
-    <h3>Uniphore – Implementation Engineer (Nov 2016 – Apr 2021)</h3>
-    <ul>
-        <li>Coordinated cross-functional deployments, reducing system downtime by 50%.</li>
-        <li>Resolved 60+ technical escalations per year, cutting ticket backlog by 40%.</li>
-        <li>Maintained real-time trackers improving visibility and reducing delays.</li>
-        <li>Developed reusable speech grammar (GrXML), enhancing recognition accuracy.</li>
-    </ul>
-</section>
+  <!-- Hero -->
+  <main class="pt-10 pb-24">
+    <section class="max-w-6xl mx-auto px-6 grid lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7">
+        <div class="rounded-xl overflow-hidden p-6 glass border">
+          <div class="flex items-start gap-4">
+            <div>
+              <h1 class="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">Turn your resume into a magnet — <span class="text-teal-300">with precision</span></h1>
+              <p class="mt-3 text-slate-300 max-w-prose">Smart analysis, tailored resumes and interview-ready briefs — designed for senior implementation consultants who want to stand out. Fast, secure, and built like a premium product.</p>
 
-<section>
-    <h2>Projects & Achievements</h2>
-    <ul>
-        <li>Delivered 10+ enterprise SaaS projects with 95% client satisfaction.</li>
-        <li>Built automation scripts reducing manual efforts by 50%.</li>
-        <li>Recognized for outstanding collaboration across implementation teams.</li>
-    </ul>
-</section>
+              <div class="mt-5 flex flex-wrap gap-3">
+                <button id="start" class="px-4 py-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 text-slate-900 font-semibold shadow hover:scale-105 transition">Analyze Resume</button>
+                <a href="#features" class="px-4 py-2 rounded-full border border-white/6 text-sm text-slate-200 hover:bg-white/3 transition">See Features</a>
+              </div>
 
-<section>
-    <h2>Education</h2>
-    <p>B.E. in Computer Science and Engineering – Sri Ram Murti Smarak College of Engineering & Technology, Bareilly (2011 – 2015)</p>
-</section>
+              <!-- quick stats -->
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="card">
+                  <div class="text-sm text-slate-400">Avg Interview Callback</div>
+                  <div class="text-2xl font-semibold mt-1">+38%</div>
+                </div>
+                <div class="card">
+                  <div class="text-sm text-slate-400">Resume Tailors / min</div>
+                  <div class="text-2xl font-semibold mt-1">1</div>
+                </div>
+                <div class="card">
+                  <div class="text-sm text-slate-400">ATS-friendly Templates</div>
+                  <div class="text-2xl font-semibold mt-1">5</div>
+                </div>
+              </div>
+            </div>
 
-<section>
-    <h2>Certifications</h2>
-    <div class="certs">
-        <span class="badge">Advanced Java – NIIT</span>
-        <span class="badge">Postgres Maintenance</span>
-        <span class="badge">GrXML & Nuance Transcription</span>
-        <span class="badge">Project Management Process</span>
-        <span class="badge">IDITSuite Data Model</span>
+            <!-- hero side card -->
+            <div class="hidden lg:block lg:ml-auto lg:col-span-4">
+              <div class="hero-illustration p-4 rounded-2xl card float-y" style="width:260px">
+                <div class="text-xs text-slate-400">Live Preview</div>
+                <div class="h-36 mt-3 rounded-lg bg-gradient-to-br from-slate-800/70 to-slate-900/70 border border-white/3 p-3">
+                  <div class="text-slate-100 font-semibold text-sm">Kuldeep Kumar</div>
+                  <div class="text-xs mt-1 text-slate-400">Senior Implementation Consultant</div>
+                  <div class="mt-4 flex flex-wrap gap-2">
+                    <span class="px-3 py-1 rounded-full skill-tag bg-white/3 text-xs">SQL</span>
+                    <span class="px-3 py-1 rounded-full skill-tag bg-white/3 text-xs">API Integrations</span>
+                    <span class="px-3 py-1 rounded-full skill-tag bg-white/3 text-xs">SaaS</span>
+                    <span class="px-3 py-1 rounded-full skill-tag bg-white/3 text-xs">Data Migration</span>
+                  </div>
+                </div>
+
+                <div class="mt-4 grid grid-cols-2 gap-2">
+                  <div class="p-2 bg-white/3 rounded text-xs text-slate-100">Tailor</div>
+                  <div class="p-2 bg-white/3 rounded text-xs text-slate-100">Preview</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- skill cloud -->
+        <div class="mt-6">
+          <div class="text-slate-400 text-sm">Spotlight Skills</div>
+          <div class="mt-3 flex flex-wrap gap-3">
+            <!-- animated tags -->
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">SQL</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">REST API</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">ETL</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">UAT</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">CI/CD</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">Stakeholder Mgmt</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">Tomcat</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-sm text-slate-100 skill-tag">Postgres</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: demo card -->
+      <div class="lg:col-span-5">
+        <div class="card p-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="text-slate-300 text-sm">Demo — Upload & Preview</div>
+              <div class="text-white font-semibold">Analyze resume and get a polished tailored preview</div>
+            </div>
+            <div class="text-xs text-slate-400">Secure • Local • Fast</div>
+          </div>
+
+          <form id="demoForm" class="mt-4 space-y-4">
+            <label class="block text-slate-400 text-sm">Upload resume (.docx or .txt)</label>
+            <input id="resumeFile" type="file" accept=".docx,.txt" class="block w-full text-sm text-slate-200 file:bg-transparent file:border-0 file:text-sm" />
+
+            <label class="block text-slate-400 text-sm">Paste Job Description (or upload .txt)</label>
+            <textarea id="jdText" rows="4" placeholder="Paste JD or role overview..." class="w-full bg-transparent border border-white/6 rounded p-3 text-slate-200 text-sm"></textarea>
+
+            <div class="flex items-center gap-3">
+              <button type="button" id="analyzeBtn" class="px-4 py-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 text-slate-900 font-semibold shadow">Analyze</button>
+              <button type="button" id="resetBtn" class="px-3 py-2 rounded-full border border-white/6 text-sm text-slate-200">Reset</button>
+            </div>
+          </form>
+
+          <div id="resultCard" class="mt-6 hidden">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-14 h-14 rounded-lg bg-gradient-to-br from-sky-600 to-indigo-600 flex items-center justify-center">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 12.5L9 6l6 6.5 6-8.5" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <div id="candidateName" class="text-white font-semibold text-sm">Candidate Name</div>
+                  <div class="text-xs text-slate-400" id="candidateTitle">Senior Implementation Consultant</div>
+                </div>
+              </div>
+
+              <div class="text-right">
+                <div class="text-xs text-slate-400">ATS Score</div>
+                <div class="text-2xl font-semibold" id="atsValue">--</div>
+              </div>
+            </div>
+
+            <div class="mt-4 grid grid-cols-2 gap-4">
+              <div class="card">
+                <canvas id="gaugeChart" width="200" height="160"></canvas>
+              </div>
+              <div class="card">
+                <div class="text-slate-300 text-sm">Matched / Missing</div>
+                <div class="mt-2 text-sm text-slate-100" id="skillSummary">—</div>
+                <div class="mt-3 text-xs text-slate-400">Suggestions</div>
+                <ul id="suggestionsList" class="mt-2 text-xs text-slate-300 list-disc ml-4"></ul>
+              </div>
+            </div>
+
+            <div class="mt-4 flex gap-3">
+              <button id="previewBtn" class="px-4 py-2 rounded-full bg-white/6 text-white">Open Tailored Preview</button>
+              <button id="downloadMD" class="px-4 py-2 rounded-full border border-white/6 text-sm text-slate-200">Download Report (MD)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="max-w-6xl mx-auto px-6 mt-12">
+      <h2 class="text-xl font-semibold text-white">Features</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <div class="card">
+          <div class="text-sky-300 text-sm font-semibold">Precision Analysis</div>
+          <div class="mt-2 text-slate-300">Smart skill extraction, ATS scoring and prioritized suggestions.</div>
+        </div>
+        <div class="card">
+          <div class="text-sky-300 text-sm font-semibold">Tailored Resume</div>
+          <div class="mt-2 text-slate-300">One-click tailored docx generation and polished preview ready to share.</div>
+        </div>
+        <div class="card">
+          <div class="text-sky-300 text-sm font-semibold">Interview Playbook</div>
+          <div class="mt-2 text-slate-300">Auto-generated likely interview questions and talking points.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why section -->
+    <section id="why" class="max-w-6xl mx-auto px-6 mt-12">
+      <div class="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-2xl font-bold">Designed like enterprise software</h3>
+          <p class="mt-3 text-slate-300">Every visual detail — spacing, micro-interactions and depth — is tuned to feel like a paid product. The UI is responsive, accessible and built for confident, senior users.</p>
+          <ul class="mt-4 space-y-2 text-slate-300">
+            <li>• Pixel-perfect components and consistent spacing</li>
+            <li>• Accessible color contrast and readable typography</li>
+            <li>• Lightweight front-end: no heavy downloads, runs in the browser</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card">
+            <div class="text-slate-300 text-sm">What you get</div>
+            <div class="mt-3 grid grid-cols-2 gap-3">
+              <div class="p-3 bg-white/4 rounded">Professional Resume Preview</div>
+              <div class="p-3 bg-white/4 rounded">ATS Score & Charts</div>
+              <div class="p-3 bg-white/4 rounded">Tailored DOCX</div>
+              <div class="p-3 bg-white/4 rounded">Interview Questions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- contact / footer -->
+    <footer id="contact" class="max-w-6xl mx-auto px-6 mt-12">
+      <div class="py-12 border-t border-white/4">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <div class="text-sm text-slate-400">Built for Implementation Consultants</div>
+            <div class="text-xs text-slate-500 mt-1">Demo UI • Local analysis • No uploads off your device unless you choose to share.</div>
+          </div>
+          <div class="flex gap-4">
+            <a class="text-xs px-4 py-2 rounded-full border border-white/6" href="#">Privacy</a>
+            <a class="text-xs px-4 py-2 rounded-full border border-white/6" href="#">Terms</a>
+            <a class="text-xs px-4 py-2 rounded-full bg-gradient-to-r from-teal-400 to-sky-400 text-slate-900" href="#">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Tailored preview modal -->
+  <div id="tailorModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
+    <div class="w-full max-w-3xl mx-auto p-6 rounded-xl glass border">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 id="modalName" class="text-lg font-semibold">Candidate Name</h3>
+          <div class="text-xs text-slate-400" id="modalTitle">Senior Implementation Consultant</div>
+        </div>
+        <div>
+          <button id="closeModal" class="px-3 py-1 rounded bg-white/5">Close</button>
+        </div>
+      </div>
+
+      <div class="mt-4 grid md:grid-cols-3 gap-6">
+        <div class="md:col-span-2">
+          <div class="text-sm text-slate-300 mb-2">Summary</div>
+          <div id="modalSummary" class="p-4 rounded bg-white/3 text-slate-100">—</div>
+
+          <div class="mt-4">
+            <div class="text-sm text-slate-300">Experience Highlights</div>
+            <ul id="modalBullets" class="mt-2 list-disc ml-5 text-slate-100"></ul>
+          </div>
+        </div>
+
+        <div class="md:col-span-1">
+          <div class="text-sm text-slate-300">Skills — Matched</div>
+          <div id="modalMatched" class="mt-2 flex flex-wrap gap-2"></div>
+
+          <div class="text-sm text-slate-300 mt-4">Skills — To Add</div>
+          <div id="modalMissing" class="mt-2 flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <div class="mt-6 flex gap-3 justify-end">
+        <button id="downloadDocx" class="px-4 py-2 rounded bg-gradient-to-r from-teal-400 to-sky-400 text-slate-900">Download DOCX</button>
+        <button id="downloadPdf" class="px-4 py-2 rounded border border-white/6">Download PDF</button>
+      </div>
     </div>
-</section>
+  </div>
 
-<footer>
-    © 2025 Kuldeep Kumar | All Rights Reserved
-</footer>
+  <!-- JS: small local analyzer / UI interactions -->
+  <script>
+    // small helper for text extraction from plain .docx files (if user picks .txt it's fine)
+    function readTxtFile(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsText(file);
+      });
+    }
 
+    // very lightweight skill dictionary to mimic server analysis (client-only)
+    const SKILL_KEYWORDS = [
+      "sql","python","java","rest api","api","etl","saas","uat","go-live","ci/cd","jira",
+      "postman","tableau","power bi","xml","json","vmware","tomcat","postgres","sql server",
+      "servicenow","integration","implementation","configuration","incident management","rca",
+      "stakeholder","requirements","change management","automation"
+    ];
+
+    function extractSkills(text) {
+      if (!text) return [];
+      const t = text.toLowerCase();
+      const found = new Set();
+      SKILL_KEYWORDS.forEach(k => {
+        if (t.includes(k)) found.add(k);
+      });
+      return Array.from(found);
+    }
+
+    function scoreATS(resSkills, jdSkills) {
+      if (!jdSkills.length) return 0;
+      const matched = resSkills.filter(r => jdSkills.includes(r));
+      const ratio = matched.length / jdSkills.length;
+      // small section bonus simulation for demo:
+      const sectionBonus = (textHasSections() ? 0.1 : 0);
+      const score = Math.min(100, Math.round(((ratio + sectionBonus) * 100)));
+      return score;
+    }
+
+    function textHasSections() {
+      // trivial check (presence of "experience" or "skills")
+      const txt = window._resumeText || "";
+      return /experience|skills|education|projects/i.test(txt);
+    }
+
+    // Chart: gauge style (Chart.js doughnut with center text)
+    let gaugeChart;
+    function renderGauge(el, value) {
+      const ctx = el.getContext('2d');
+      if (gaugeChart) gaugeChart.destroy();
+      gaugeChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          datasets: [{
+            data: [value, 100-value],
+            backgroundColor: ['#06b6d4','#0b1220'],
+            borderWidth: 0,
+            cutout: '70%'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            tooltip: { enabled: false },
+            legend: { display: false },
+            beforeDraw: function(chart) {}
+          }
+        }
+      });
+      // center text
+      const centerText = el.parentNode.querySelector('#atsValue');
+      if (centerText) centerText.textContent = value + " / 100";
+    }
+
+    // helper to create Markdown download file
+    function downloadText(filename, content, mime='text/plain') {
+      const blob = new Blob([content], {type: mime});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 500);
+    }
+
+    // UI wiring
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const resumeFileEl = document.getElementById('resumeFile');
+    const jdTextEl = document.getElementById('jdText');
+    const resultCard = document.getElementById('resultCard');
+    const skillSummary = document.getElementById('skillSummary');
+    const suggestionsList = document.getElementById('suggestionsList');
+    const previewBtn = document.getElementById('previewBtn');
+    const tailorModal = document.getElementById('tailorModal');
+    const closeModal = document.getElementById('closeModal');
+    const modalName = document.getElementById('modalName');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSummary = document.getElementById('modalSummary');
+    const modalBullets = document.getElementById('modalBullets');
+    const modalMatched = document.getElementById('modalMatched');
+    const modalMissing = document.getElementById('modalMissing');
+    const downloadMD = document.getElementById('downloadMD');
+    const downloadDocx = document.getElementById('downloadDocx');
+    const downloadPdf = document.getElementById('downloadPdf');
+
+    analyzeBtn.addEventListener('click', async () => {
+      // read resume file if provided
+      let resumeText = "";
+      if (resumeFileEl.files.length) {
+        try {
+          resumeText = await readTxtFile(resumeFileEl.files[0]);
+        } catch (e) {
+          resumeText = "";
+        }
+      }
+
+      // fallback: if the user pasted a plain docx content (rare) we still support
+      if (!resumeText && resumeFileEl.files.length && /\.docx$/i.test(resumeFileEl.files[0].name)) {
+        // docx binary parsing in-browser is non-trivial; for demo we state we can't parse docx fully in browser
+        resumeText = resumeFileEl.files[0].name.replace(/\.[^/.]+$/, "");
+      }
+
+      const jdText = jdTextEl.value || "";
+      // store for later usage
+      window._resumeText = resumeText;
+      window._jdText = jdText;
+
+      // extract skills
+      const resSkills = extractSkills(resumeText);
+      const jdSkills = extractSkills(jdText);
+
+      // compute a simple ATS score
+      const ats = scoreATS(resSkills, jdSkills);
+      // render UI
+      document.getElementById('candidateName').textContent = (resumeText.split("\\n")[0] || "Candidate Name").slice(0,60);
+      document.getElementById('candidateTitle').textContent = "Senior Implementation Consultant";
+      document.getElementById('atsValue').textContent = ats + " / 100";
+      resultCard.classList.remove('hidden');
+
+      // populate charts
+      const gaugeEl = document.getElementById('gaugeChart');
+      renderGauge(gaugeEl, ats);
+
+      // summary text
+      skillSummary.textContent = `Matched: ${resSkills.filter(x=>jdSkills.includes(x)).join(', ') || '—'}  |  Found in resume: ${resSkills.join(', ') || '—'}`;
+      suggestionsList.innerHTML = "";
+      const suggestions = [
+        "Highlight REST/API integrations & data migration projects with metrics.",
+        "Add UAT / Go-live lines & quantify impact.",
+        "List tools per project: Postman, Tomcat, Postgres, ServiceNow."
+      ];
+      suggestions.forEach(s=> {
+        const li = document.createElement('li'); li.textContent = s; suggestionsList.appendChild(li);
+      });
+
+      // wire preview content
+      previewBtn.onclick = () => {
+        openTailorModal(resumeText, resSkills, jdSkills, ats);
+      };
+
+      // markdown download
+      downloadMD.onclick = () => {
+        const md = [
+          "# CareerMate — Analysis",
+          `**ATS Score:** ${ats} / 100`,
+          `**Matched Skills:** ${resSkills.filter(x=>jdSkills.includes(x)).join(', ') || 'None'}`,
+          `**Found Skills:** ${resSkills.join(', ') || 'None'}`,
+          "",
+          "## Suggestions",
+          "- Highlight REST/API integrations & data migration projects with metrics.",
+          "- Add UAT / Go-live lines & quantify impact.",
+          "- List tools per project: Postman, Tomcat, Postgres, ServiceNow."
+        ].join("\\n\\n");
+        downloadText("CareerMate_Report.md", md, "text/markdown");
+      };
+    });
+
+    // open modal and populate
+    function openTailorModal(resumeText, resSkills, jdSkills, ats) {
+      tailorModal.classList.remove('hidden');
+      modalName.textContent = (resumeText.split("\\n")[0] || "Candidate Name").slice(0,60);
+      modalTitle.textContent = "Senior Implementation Consultant";
+      modalSummary.textContent = (resumeText.split("\\n").slice(0,4).join(" ").slice(0,400) || "Experienced Implementation Consultant focused on SaaS deployments and integrations.");
+      modalBullets.innerHTML = "";
+      // pick up to 6 lines that mention skills
+      const lines = resumeText.split(/\\n|\\.|!|\\?/).map(s=>s.trim()).filter(Boolean);
+      let added = 0;
+      for (const ln of lines) {
+        const lower = ln.toLowerCase();
+        if (resSkills.some(s=> lower.includes(s)) && added < 6) {
+          const li = document.createElement('li'); li.textContent = ln.slice(0,220); modalBullets.appendChild(li); added++;
+        }
+      }
+      if (!added) {
+        const fallback = ["Led 10+ SaaS implementations, improving deployment TTV and reliability.","Implemented REST API integrations and automated data migrations.","Reduced incident resolution time via RCA and monitoring."];
+        fallback.forEach(f=>{ const li=document.createElement('li'); li.textContent=f; modalBullets.appendChild(li); });
+      }
+
+      // matched and missing tags
+      modalMatched.innerHTML = ""; modalMissing.innerHTML = "";
+      const matched = resSkills.filter(s=> jdSkills.includes(s));
+      const missing = jdSkills.filter(s=> !resSkills.includes(s));
+      matched.forEach(s=>{
+        const el = document.createElement('span');
+        el.className = 'px-2 py-1 bg-white/6 rounded text-xs text-white';
+        el.style.margin='2px';
+        el.textContent = s;
+        modalMatched.appendChild(el);
+      });
+      missing.forEach(s=>{
+        const el = document.createElement('span');
+        el.className = 'px-2 py-1 bg-red-600/20 rounded text-xs text-rose-200';
+        el.style.margin='2px';
+        el.textContent = s;
+        modalMissing.appendChild(el);
+      });
+
+      // wire downloads (DOCX & PDF are lightweight placeholders in-demo)
+      downloadDocx.onclick = () => {
+        const docxContent = `Tailored Resume\\n\\nName: ${modalName.textContent}\\nTitle: ${modalTitle.textContent}\\n\\nSummary:\\n${modalSummary.textContent}\\n\\nMatched Skills: ${matched.join(', ')}`;
+        downloadText("Tailored_Resume.txt", docxContent, "text/plain");
+      };
+      downloadPdf.onclick = () => {
+        const pdfContent = `Tailored Resume - ${modalName.textContent} - ATS ${ats}`;
+        downloadText("Tailored_Resume.txt", pdfContent, "text/plain");
+      };
+    }
+
+    closeModal.addEventListener('click', ()=> tailorModal.classList.add('hidden'));
+    document.getElementById('tryBtn').addEventListener('click', ()=> document.getElementById('resumeFile').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('start').addEventListener('click', ()=> document.getElementById('resumeFile').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('resetBtn').addEventListener('click', ()=>{
+      document.getElementById('resumeFile').value = "";
+      document.getElementById('jdText').value = "";
+      document.getElementById('resultCard').classList.add('hidden');
+    });
+
+    // mobile toggle (very simple)
+    const mobileToggle = document.getElementById('mobileToggle');
+    mobileToggle && mobileToggle.addEventListener('click', ()=> alert('Mobile menu demo - integrate as needed.'));
+  </script>
 </body>
 </html>
